@@ -1,3 +1,4 @@
 declare module 'roman-numbers' {
-    
-    export default { arabToRoman: any };}
+    export function romanToArab(a:string): any;
+    export function arabToRoman(a:number): any;
+}
