@@ -75,6 +75,60 @@ button:focus-visible {
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #cacaca;
   }
+}
+
+
+.input-and-label {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.calculator {
+  display: flex;
+  border: 2px solid darkgray;
+  flex-direction: column;
+  align-items: start;
+}
+h2 {
+  margin-left: 3rem;
+}
+.all-inputs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: .5rem;
+  align-items: start;
+  padding: 0 3rem 3rem 3rem ;
+  /* background-color: lightblue; */
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.test {
+  margin-top: 1rem;
+  display: flex;
+  border: 2px solid darkgray;
+  flex-direction: column;
+  align-items: start;
+}
+
+.test-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: start;
+  padding: 0 3rem 3rem 3rem;
+}
+
+.two-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 }
