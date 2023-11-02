@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import {
-    romanToArab,
-    arabToRoman,
-} from 'roman-numbers'
+import * as romans from 'romans'
 
 const options = [64, 256, 1024, 3999]
 
@@ -25,25 +22,25 @@ const color = ref('')
 const convertDecimal = () => {
     binary.value = Number(decimal.value).toString(2)
     hexadecimal.value = Number(decimal.value).toString(16)
-    roman.value = arabToRoman(Number(decimal.value))
+    roman.value = romans.romanize(Number(decimal.value))
 }
 
 const convertBinary = () => {
     decimal.value = parseInt(binary.value, 2).toString()
     hexadecimal.value = parseInt(binary.value, 2).toString(16)
-    roman.value = arabToRoman(parseInt(binary.value, 2))
+    roman.value = romans.romanize(parseInt(binary.value, 2))
 }
 
 const convertHexadecimal = () => {
     decimal.value = parseInt(hexadecimal.value, 16).toString()
     binary.value = parseInt(hexadecimal.value, 16).toString(2)
-    roman.value = arabToRoman(parseInt(hexadecimal.value, 16))
+    roman.value = romans.romanize(parseInt(hexadecimal.value, 16))
 }
 
 const convertRoman = () => {
-    decimal.value = romanToArab(roman.value.toUpperCase())
-    binary.value = Number(romanToArab(roman.value.toUpperCase())).toString(2)
-    hexadecimal.value = Number(romanToArab(roman.value.toUpperCase())).toString(16)
+    decimal.value = romans.deromanize(roman.value.toUpperCase()).toString()
+    binary.value = Number(romans.deromanize(roman.value.toUpperCase())).toString(2)
+    hexadecimal.value = Number(romans.deromanize(roman.value.toUpperCase())).toString(16)
 }
 
 const newTest = () => {
@@ -53,7 +50,7 @@ const newTest = () => {
     let taskText: any = task
     
     if (direction.value === 'b-d') taskText = Number(task).toString(2)
-    if (direction.value === 'r-d') taskText = arabToRoman(Number(task))
+    if (direction.value === 'r-d') taskText = romans.romanize(Number(task))
     
     test.value = taskText.toString()
 }
@@ -61,16 +58,16 @@ const newTest = () => {
 const checkSolution = () => {
     let valueToCheck: number | string = solution.value
     
-    if (direction.value === 'd-r') valueToCheck = Number(romanToArab(valueToCheck.toUpperCase()))
+    if (direction.value === 'd-r') valueToCheck = Number(romans.deromanize(valueToCheck.toUpperCase())) //.value??????
     else if (direction.value === 'd-b') valueToCheck = Number(parseInt(valueToCheck.toString(), 2))
-else valueToCheck = Number(valueToCheck)
+    else valueToCheck = Number(valueToCheck)
 
 const isCorrect = valueToCheck === Number(task);
 color.value = isCorrect ? 'green' : 'red'
 
 correctSolution.value = task.toString();
 if (direction.value === 'd-b') correctSolution.value = Number(task).toString(2)
-if (direction.value === 'd-r') correctSolution.value = arabToRoman(Number(task))
+if (direction.value === 'd-r') correctSolution.value = romans.romanize(Number(task))
 }
 onMounted(newTest)
 </script>

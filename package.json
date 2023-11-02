@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "roman-numbers": "^1.0.2",
+    "romans": "^2.0.15",
     "vue": "^3.3.4"
   },
   "devDependencies": {
