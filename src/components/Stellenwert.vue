@@ -90,11 +90,11 @@ onMounted(newTest)
                 </div>
                 <div class="input-and-label">
                     <label>Hexadezimal</label>
-                    <input type="text" placeholder="HEX" v-model="hexadecimal" @input="convertHexadecimal" />
+                    <input type="text" placeholder="HEX" v-model="hexadecimal" @input="convertHexadecimal" @keyup="hexadecimal=hexadecimal.toUpperCase()"/>
                 </div>
                 <div class="input-and-label">
                     <label>Römisch</label>
-                    <input type="text" placeholder="RÖM < 4000" v-model="roman" @input="convertRoman" />
+                    <input type="text" @keyup="roman=roman.toUpperCase()" placeholder="RÖM < 4000" v-model="roman" @input="convertRoman" />
                 </div>
             </div>
         </div>
@@ -127,7 +127,7 @@ onMounted(newTest)
             </fieldset>
             
             <fieldset>
-                <p>{{ test }} = <input type="text" v-model="solution" :style="{ color }" @keyup.enter="checkSolution" /></p>
+                <p>{{ test }} = <input type="text" v-model="solution" :style="{ color }" @keyup.enter="checkSolution" @keyup="solution=solution.toUpperCase()"/></p>
                 
                 <p v-if="color === 'red'">Richtige Lösung: {{ correctSolution }}</p>
                 <div class="two-buttons">
